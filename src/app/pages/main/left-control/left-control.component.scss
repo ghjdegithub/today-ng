@@ -1,4 +1,4 @@
-div.header-wrapper{
+div.header-wrapper {
   padding: 12px;
   display: flex;
   align-items: center;
@@ -6,21 +6,43 @@ div.header-wrapper{
   overflow: hidden;
   line-height: 0;
 
-  .margin-left{
+  .margin-left {
     margin-left: 8px;
   }
 
-  img{
+  img {
     @extend .margin-left;
     width: 40px;
     height: 40px;
   }
 
-  .username-text{
+  .username-text {
     @extend .margin-left;
     flex: 1;
     line-height: 40px;
     font-size: 14px;
     color: white;
+  }
+
+  .header-btn {
+    color: white;
+
+    i {
+      font-size: 18px;
+    }
+  }
+}
+
+.list-wrapper {
+  overflow-y: scroll;
+  position: absolute;
+  top: 60px;
+  bottom: 48px;
+  width: 100%;
+  padding-bottom: 20px;
+
+  .add-list-btn-wrapper {
+    margin-top: 8px;
+    text-align: center;
   }
 }
