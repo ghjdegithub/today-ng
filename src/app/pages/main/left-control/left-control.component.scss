@@ -1,0 +1,26 @@
+div.header-wrapper{
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  line-height: 0;
+
+  .margin-left{
+    margin-left: 8px;
+  }
+
+  img{
+    @extend .margin-left;
+    width: 40px;
+    height: 40px;
+  }
+
+  .username-text{
+    @extend .margin-left;
+    flex: 1;
+    line-height: 40px;
+    font-size: 14px;
+    color: white;
+  }
+}
