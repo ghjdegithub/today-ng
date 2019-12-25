@@ -48,6 +48,8 @@ export class ListComponent implements OnInit, OnDestroy {
     this.listService.currentUuid$.pipe(takeUntil(this.destroy$)).subscribe(uuid => {
       this.currentListUuid = uuid;
     });
+
+    this.listService.getAll();
   }
 
   ngOnDestroy(): void {
@@ -110,5 +112,9 @@ export class ListComponent implements OnInit, OnDestroy {
           res();
         }).catch(() => console.error('Delete list failed'))
     });
+  }
+
+  close(): void {
+    this.dropdown.close();
   }
 }
