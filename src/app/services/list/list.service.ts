@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {List} from '../domain/entities';
+import {List} from '../../../domain/entities';
 import {Subject} from 'rxjs';
 import {LocalStorageService} from '../local-storage/local-storage.service';
 import {LISTS} from '../local-storage/local-storage.namespace';

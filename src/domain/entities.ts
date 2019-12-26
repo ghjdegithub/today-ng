@@ -1,4 +1,4 @@
-import {generateUUID} from '../../../utils/uuid';
+import {generateUUID} from '../utils/uuid';
 
 export class Todo {
   _id: string;
@@ -9,7 +9,7 @@ export class Todo {
   completedFlag: boolean;
   completedAt: number;
   dueAt: number;
-  plantAt: number;
+  planAt: number;
   notifyMe = false;
 
   constructor(title: string, listUUID?: string) {

@@ -7,7 +7,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {List} from '../../../../services/domain/entities';
+import {List} from '../../../../../domain/entities';
 import {NzDropdownContextComponent, NzDropdownService, NzModalService} from 'ng-zorro-antd';
 import {Subject} from 'rxjs';
 import {ListService} from '../../../../services/list/list.service';

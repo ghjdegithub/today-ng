@@ -1,18 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import {Todo} from '../domain/entities';
+import {Todo} from '../../../domain/entities';
 import {LocalStorageService} from '../local-storage/local-storage.service';
 import {ListService} from '../list/list.service';
 import {TODOS} from '../local-storage/local-storage.namespace';
 import {flootToMinute, getCurrentTime, ONE_HOUR} from '../../../utils/time';
+import {RankBy} from '../../../domain/type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
   todo$ = new Subject<Todo[]>();
+  rank$ = new Subject<RankBy>();
+  completedHide$ = new Subject<boolean>();
 
   private todos: Todo[] = [];
+  private rank: RankBy = 'title';
+  private completedHide = false;
 
   constructor(private listService: ListService, private store: LocalStorageService) {
     this.todos = this.store.getList(TODOS);
@@ -20,6 +25,8 @@ export class TodoService {
 
   private broadCast(): void {
     this.todo$.next(this.todos);
+    this.rank$.next(this.rank);
+    this.completedHide$.next(this.completedHide);
   }
 
   private persist(): void {
@@ -42,7 +49,7 @@ export class TodoService {
   setTodoToday(uuid: string): void {
     const todo = this.getByUUID(uuid);
     if (todo && !todo.completedFlag) {
-      todo.plantAt = flootToMinute(new Date()) + ONE_HOUR;
+      todo.planAt = flootToMinute(new Date()) + ONE_HOUR;
       this.update(todo);
     }
   }
@@ -53,6 +60,7 @@ export class TodoService {
       todo.completedFlag = !todo.completedFlag;
       todo.completedAt = todo.completedFlag ? getCurrentTime() : undefined;
       this.persist();
+      this.completedHide$.next(this.completedHide);
     }
   }
 
@@ -69,7 +77,7 @@ export class TodoService {
     const newTodo = new Todo(title, listUUID);
 
     if (listUUID === 'today') {
-      newTodo.plantAt = flootToMinute(new Date()) + ONE_HOUR;
+      newTodo.planAt = flootToMinute(new Date()) + ONE_HOUR;
       newTodo.listUUID = 'todo';
     }
 
@@ -100,5 +108,15 @@ export class TodoService {
   deleteInList(uuid: string): void {
     const toDelete = this.todos.filter(t => t.listUUID === uuid);
     toDelete.forEach(t => this.delete(t._id));
+  }
+
+  toggleRank(r: RankBy): void {
+    this.rank = r;
+    this.rank$.next(r);
+  }
+
+  toggleCompletedHide(hide: boolean): void {
+    this.completedHide = hide;
+    this.completedHide$.next(hide);
   }
 }

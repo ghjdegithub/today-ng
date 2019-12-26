@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-quick-add',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quick-add.component.scss']
 })
 export class QuickAddComponent implements OnInit {
+  @Output() add = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  addTodo(title: string) {
+    if (title) {
+      this.add.next(title);
+    }
+  }
 }
