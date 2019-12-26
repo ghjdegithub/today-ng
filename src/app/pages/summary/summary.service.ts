@@ -5,9 +5,9 @@ import {TodoService} from '../../services/todo/todo.service';
 import {floorToDate, getTodayTime, ONE_DAY} from '../../../utils/time';
 import {
   LAST_SUMMARY_DATE,
-  START_USING_DATE
+  START_USING_DATE,
+  SUMMARIES
 } from '../../services/local-storage/local-storage.namespace';
-import {last} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +69,22 @@ export class SummaryService {
     this.addSummaries(summaries);
   }
 
-  private addSummaries(summaries: Summary[]) {
-    this.summaries.push(...summaries);
+  public summaryForDate(date: number): Summary {
+    if (!this.summaries.length) {
+      this.summaries = this.loadSummaries();
+    }
+    return this.summaries.find(s => s.date === date);
   }
+
+  private loadSummaries(): Summary[] {
+    return this.store.getList<Summary>(SUMMARIES);
+  }
+
+  private addSummaries(summaries: Summary[]) {
+    const oldSummaries = this.loadSummaries();
+    const newSummaries = oldSummaries.concat(summaries);
+    this.store.set(SUMMARIES, newSummaries);
+  }
+
+
 }

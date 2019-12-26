@@ -4,10 +4,10 @@
   <span class="username-text" *ngIf="!isCollapsed">
     {{ username }}
   </span>
-  <div class="floating-btn header-btn" *ngIf="!isCollapsed">
+  <div (click)="goSetting()" *ngIf="!isCollapsed" class="floating-btn header-btn">
     <i nz-icon nzType="setting" nzTheme="outline"></i>
   </div>
-  <div class="floating-btn header-btn">
+  <div (click)="goSummary()" *ngIf="!isCollapsed" class="floating-btn header-btn">
     <i nz-icon nzType="calendar" nzTheme="outline"></i>
   </div>
 </div>
