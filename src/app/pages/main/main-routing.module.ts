@@ -7,6 +7,7 @@ import {DetailComponent} from './detail/detail.component';
 const routes: Routes = [
   {
     path: 'main', component: MainComponent,
+    canActivate: [],
     children: [
       {
         path: ':id',

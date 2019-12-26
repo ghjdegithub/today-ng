@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -30,7 +30,10 @@ registerLocaleData(zh);
     SetupModule,
     MainModule,
   ],
-  providers: [{provide: NZ_I18N, useValue: zh_CN}],
+  providers: [
+    {provide: NZ_I18N, useValue: zh_CN},
+    {provide: LOCALE_ID, useValue: 'zh-Hans'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
