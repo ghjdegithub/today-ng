@@ -2,22 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
-import {
-  NgZorroAntdModule,
-  NzButtonModule,
-  NzCheckboxModule,
-  NzDatePickerModule,
-  NzDividerModule,
-  NzDropDownModule,
-  NzFormModule,
-  NzIconModule,
-  NzInputModule,
-  NzLayoutModule,
-  NzListModule,
-  NzMenuModule,
-  NzModalModule,
-  NzPopconfirmModule, NzSwitchModule
-} from 'ng-zorro-antd';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {LeftControlComponent} from './left-control/left-control.component';
 import {ListComponent} from './left-control/list/list.component';
 import {RightControlComponent} from './right-control/right-control.component';

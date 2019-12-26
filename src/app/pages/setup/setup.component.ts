@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {LocalStorageService} from '../../services/local-storage/local-storage.service';
 import {
   INIT_FLAG,
@@ -6,16 +6,21 @@ import {
   USERNAME
 } from '../../services/local-storage/local-storage.namespace';
 import {getTodayTime} from '../../../utils/time';
+import {setupTransition} from './setup.animation';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',
-  styleUrls: ['./setup.component.scss']
+  styleUrls: ['./setup.component.scss'],
+  animations: [setupTransition],
 })
 export class SetupComponent implements OnInit {
+  @HostBinding('@setupTransition') state = 'activated';
+
   username: string;
 
-  constructor(private store: LocalStorageService) {
+  constructor(private store: LocalStorageService, private router: Router) {
   }
 
   ngOnInit() {
@@ -25,5 +30,7 @@ export class SetupComponent implements OnInit {
     this.store.set(INIT_FLAG, true);
     this.store.set(START_USING_DATE, getTodayTime());
     this.store.set(USERNAME, this.username);
+
+    this.router.navigateByUrl('main');
   }
 }

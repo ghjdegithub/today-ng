@@ -3,7 +3,7 @@ import {animate, query, style, transition, trigger} from '@angular/animations';
 export const mainPageSwitchTransition = trigger('mainPageSwitchTransition', [
   transition(':enter',
     query('nz-layout.full-screen', [
-      style({opactity: 0, transform: 'scale3d(0.95, 0.95, 0)'}),
+      style({opacity: 0, transform: 'scale3d(0.95, 0.95, 0)'}),
       animate('200ms 200ms')
     ])),
   transition(':leave', [
