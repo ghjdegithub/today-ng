@@ -15,7 +15,7 @@ export class SettingComponent implements OnInit {
   avatar = this.store.get(AVATAR_CODE);
   username = this.store.get(USERNAME);
 
-  @HostBinding('@pageSwitchTransition') private state = 'activated';
+  @HostBinding('@pageSwitchTransition') state = 'activated';
   @ViewChild('usernameInput', {static: true}) private usernameInput: ElementRef;
 
   constructor(private store: LocalStorageService, private message: NzMessageService, private router: Router) {
