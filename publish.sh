@@ -1,6 +1,7 @@
 ng build --prod;
 cp ./404.html ./dist/today-ng/404.html
 cd ./dist/today-ng
+git checkout --orphan gh-pages
 git add .
 git commit -m "init project"
 git push origin gh-pages
