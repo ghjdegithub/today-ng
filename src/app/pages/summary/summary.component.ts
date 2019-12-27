@@ -18,7 +18,7 @@ export class SummaryComponent implements OnInit {
   username = this.store.get(USERNAME) || 'username';
   dateCount = Math.floor((getTodayTime() - this.store.get(START_USING_DATE)) / ONE_DAY + 1);
 
-  @HostBinding('@pageSwitchTransition') private state = 'activated';
+  @HostBinding('@pageSwitchTransition') state = 'activated';
 
   constructor(
     private summaryService: SummaryService,
