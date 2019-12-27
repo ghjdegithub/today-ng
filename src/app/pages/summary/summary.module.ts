@@ -10,8 +10,8 @@ import {SummaryService} from './summary.service';
   declarations: [SummaryComponent],
   imports: [
     CommonModule,
-    NgZorroAntdModule,
     SummaryRoutingModule,
+    NgZorroAntdModule,
   ],
   providers: [SummaryService]
 })
